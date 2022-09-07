@@ -35,3 +35,36 @@ export const equalityQuery = async (req, res, next) => {
         next(error)
     }
 };
+
+// not equal to operator
+export const notEqualTo = async (req, res, next) => {
+    
+    try {
+        const persons = await Person.find({ eyeColor: { $ne: "green" } });
+        res.status(200).json(persons);
+    } catch (error) {
+        next(error)
+    }
+};
+
+// greater than operator
+export const greaterThan = async (req, res, next) => {
+    
+    try {
+        // const persons = await Person.find({ age: { $gt: 25 } });
+
+        // greater than / equal to
+        // const persons = await Person.find({ age: { $gte: 25 } });
+
+        // greater than / equal to for strings (name starting with 'N', or at least container the letter 'N'. Sorting gives proper arrangement)
+        // const persons = await Person.find({ name: { $gt: "N" } }).sort({ name: 1 })
+
+        
+        // greater than operator for dates
+        // const persons = await Person.find({ registered: { $gt: "2016-08-20T04:43:18.000Z" } }).count();
+
+        res.status(200).json(persons);
+    } catch (error) {
+        next(error)
+    }
+};
