@@ -81,3 +81,39 @@ export const inAndNotIn = async (req, res, next) => {
         next(error)
     }
 };
+
+// $and operator
+// logically combines multiple conditions. resulting documents must match all conditions
+export const andOperator = async (req, res, next) => {
+    
+    try {
+        // get persons that are male and 25 years
+        const persons = await Person.find({ $and: [ { gender: "male" }, { age: 25 } ] });
+
+        // get persons whose age is not equal to 25 and is greater than or equal to 20
+        // const persons = await Person.find({ $and: [ {age: { $ne: 25 }}, {age: { $gte: 20 }} ] }).count();
+
+        /* 
+        NB
+        if you want to query by same fields (as expample two), you must use the and operator
+        in this case this and operator is known as 'explicit and' operator
+
+        { $and: [ {age: { $ne: 25 }}, {age: { $gte: 20 }} ] }
+
+        ≠
+
+        { age: { $ne: 25 }, age: { $gte: 20 } }
+        in the second  query above, the query will return only the second parameter, the first part will be omitted
+
+        */
+
+        /* but if the fields are different you can use implicit and as shown below; both return the same result sets  */
+        // get persons that are female and favorite fruit is banana
+        // const persons = await Person.find({ $and: [ { gender: "female" }, { favoriteFruit: "banana" } ] }).count();
+        // const persons = await Person.find({ gender: "female" , favoriteFruit: "banana" }).count();
+
+        res.status(200).json(persons);
+    } catch (error) {
+        next(error)
+    }
+};
