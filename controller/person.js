@@ -149,3 +149,35 @@ export const nestedDocuments = async (req, res, next) => {
         next(error)
     }
 };
+
+// querying arrays
+/** fields used in dot notation must be inside quotation marks */
+export const arrayInDocuments = async (req, res, next) => {
+    
+    try {  
+        /** entire tag array is as follows */
+        // const persons = await Person.find({ 
+        //     tags: [
+        //         "enim",
+        //         "id",
+        //         "velit",
+        //         "ad",
+        //         "consequat"
+        //     ]
+        // });
+
+        /** tags array contains the scpecified value as an element */
+        // const persons = await Person.find({ 
+        //     tags: "ad"
+        // });
+
+        /** specific index contains specific element */
+        const persons = await Person.find({ 
+            "tags.0": "ad"
+        });
+
+        res.status(200).json(persons);
+    } catch (error) {
+        next(error)
+    }
+};
