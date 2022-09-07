@@ -36,3 +36,19 @@ export const arrayOfNestedDocuments = async (req, res, next) => {
         next(error)
     }
 };
+
+// array of nested documents
+/** used not only to read but also update specific document(s) of the array */
+/** at least one nested document in the array must match ALL conditions. Order of conditions doesn't matter */
+export const elemMatchOperator = async (req, res, next) => {
+    
+    try {    
+        // const friends = await Friend.find({ friends: { $elemMatch: { name: "Bob", registered: false } } }) - returns
+        // const friends = await Friend.find({ friends: { $elemMatch: { age: 25, registered: false } } }) - returns
+        const friends = await Friend.find({ friends: { $elemMatch: { age: 27, registered: false } } }) // returns [] as there's conflct in the conditions; they fall in different d=subdocuments
+
+        res.status(200).json(friends);
+    } catch (error) {
+        next(error)
+    }
+};
