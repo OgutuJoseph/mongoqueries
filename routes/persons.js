@@ -13,7 +13,8 @@ import {
     arrayOperators, 
     existsOperator,
     typeOperator,
-    findFilter
+    findFilter,
+    regexOperator
 } from '../controller/person.js';
 
 const router = express.Router();
@@ -34,5 +35,6 @@ router.get('/arrayOperators', arrayOperators);
 router.get('/existsOperator', existsOperator);
 router.get('/typeOperator', typeOperator);
 router.get('/findFilter', findFilter);
+router.get('/regexOperator', regexOperator)
 
 export default router;
