@@ -240,3 +240,19 @@ export const findFilter = async (req, res, next) => {
         next(error)
     }
 };
+
+// $regex operator
+/** filter using regular expressions */
+export const regexOperator = async (req, res, next) => {
+    
+    try {    
+        // const persons = await Person.find({ name: { $regex: /Aur/i } }); // - 'i' options returns operator results with a case-insensitive approach
+        // const persons = await Person.find({ name: { $regex: /Aur/, $options: "i" } }); 
+        // const persons = await Person.find({ name: { $regex: /Aur/ } }); // - omitting 'i' options follows a case-sensitive approach 
+        const persons = await Person.find({ name: { $regex: /^Aur/ } }); // - '^' indicates it should start with the specified characters 
+
+        res.status(200).json(persons);
+    } catch (error) {
+        next(error)
+    }
+};
