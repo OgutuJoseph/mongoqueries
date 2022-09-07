@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 const app = express();
 dotenv.config();
 
-
+/** import routes */
 import personsRoute from './routes/persons.js'
 
 /** Connect mongo db */
@@ -18,14 +18,8 @@ const connect = async () => {
         throw error;
     }
 };
-
-mongoose.connection.on("connected", () => {
-    console.log("Database connected.");
-});
-mongoose.connection.on("disconnected", () => {
-    console.log("Database disconnected.");
-});
-
+mongoose.connection.on("connected", () => { console.log("Database connected.") });
+mongoose.connection.on("disconnected", () => { console.log("Database disconnected.") });
 
 
 /** middlewares */
@@ -33,10 +27,7 @@ app.use(express.json());
 
 
 /** routes */
-app.get('/', (req, res) => {
-    // console.log('A series on mongo db queries.')   
-    res.send("A series on mongo db queries.") 
-});
+app.get('/', (req, res) => { res.send("A series on mongo db queries.") });
 app.use('/persons', personsRoute);
 
 
