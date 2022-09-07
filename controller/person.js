@@ -181,3 +181,20 @@ export const arrayInDocuments = async (req, res, next) => {
         next(error)
     }
 };
+
+// array operators ($all, $size) 
+export const arrayOperators = async (req, res, next) => {
+    
+    try {   
+        // $all operator - array contains all specified values independent of order 
+        // const persons = await Person.find({ tags: { $all: ["ad", "eu"] } });
+
+        
+        // $size operator - array is of certain size 
+        const persons = await Person.find({ tags: { $size: 4 } });
+
+        res.status(200).json(persons);
+    } catch (error) {
+        next(error)
+    }
+};
