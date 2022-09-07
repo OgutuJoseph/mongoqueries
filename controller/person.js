@@ -226,3 +226,17 @@ export const typeOperator = async (req, res, next) => {
         next(error)
     }
 };
+
+// find filter
+export const findFilter = async (req, res, next) => {
+    
+    try {    
+        // const persons = await Person.find({}, { name: 1, age: 1 });
+        // const persons = await Person.find({}, { "company.location": 1, age: 1 });
+        const persons = await Person.find({}, { name: 0, age: 0, eyeColor: 0 }); // excludes the specified; not that you cant mix 0s and 1s lest you want to run to conflict
+
+        res.status(200).json(persons);
+    } catch (error) {
+        next(error)
+    }
+};
