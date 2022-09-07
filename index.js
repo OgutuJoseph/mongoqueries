@@ -6,7 +6,8 @@ const app = express();
 dotenv.config();
 
 /** import routes */
-import personsRoute from './routes/persons.js'
+import personsRoute from './routes/persons.js';
+import friendsRoute from './routes/friends.js'
 
 /** Connect mongo db */
 const connect = async () => {
@@ -29,6 +30,7 @@ app.use(express.json());
 /** routes */
 app.get('/', (req, res) => { res.send("A series on mongo db queries.") });
 app.use('/persons', personsRoute);
+app.use('/friends', friendsRoute);
 
 
 /** connect app and db */
