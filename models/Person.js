@@ -34,7 +34,7 @@ const PersonSchema = new mongoose.Schema({
             address: { type: String }
         }
     },
-    tagse: {
+    tags: {
         type: [String]
     }
 });
