@@ -135,3 +135,17 @@ export const orOperator = async (req, res, next) => {
         next(error)
     }
 };
+
+// embedded / nested documents (just use dot notation)
+/** fields used in dot notation must be inside quotation marks */
+export const nestedDocuments = async (req, res, next) => {
+    
+    try { 
+        // const persons = await Person.find({ "company.title": "YURTURE" });
+        const persons = await Person.find({ "company.location.address": "452 Bainbridge Street" })
+
+        res.status(200).json(persons);
+    } catch (error) {
+        next(error)
+    }
+};
