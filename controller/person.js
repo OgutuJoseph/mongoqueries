@@ -117,3 +117,21 @@ export const andOperator = async (req, res, next) => {
         next(error)
     }
 };
+
+// $and operator
+// logically combines multiple conditions. resulting documents must match any of the conditions
+export const orOperator = async (req, res, next) => {
+    
+    try { 
+        // get persons that are either male or age 25
+        const persons = await Person.find({ $or: [ { gender: "male" }, { age: 25 } ] });
+
+        // if you are using same fields you can use $in operator instead, both return same results as below
+        // const persons = await Person.find({ $or: [ { eyeColor: "green" }, { eyeColor: "blue" } ] }).count();
+        // const persons = await Person.find({ eyeColor: { $in: ["green", "blue"] } }).count();
+
+        res.status(200).json(persons);
+    } catch (error) {
+        next(error)
+    }
+};

@@ -1,5 +1,5 @@
 import express from 'express'; 
-import { findMany, countAll, equalityQuery, notEqualTo, greaterThan, inAndNotIn, andOperator } from '../controller/person.js';
+import { findMany, countAll, equalityQuery, notEqualTo, greaterThan, inAndNotIn, andOperator, orOperator } from '../controller/person.js';
 
 const router = express.Router();
 
@@ -12,5 +12,6 @@ router.get('/notEqualTo', notEqualTo);
 router.get('/greaterThan', greaterThan);
 router.get('/inAndNotIn', inAndNotIn);
 router.get('/andOperator', andOperator);
+router.get('/orOperator', orOperator)
 
 export default router;
