@@ -12,7 +12,8 @@ import {
     arrayInDocuments, 
     arrayOperators, 
     existsOperator,
-    typeOperator
+    typeOperator,
+    findFilter
 } from '../controller/person.js';
 
 const router = express.Router();
@@ -31,6 +32,7 @@ router.get('/nestedDocuments', nestedDocuments);
 router.get('/arrayInDocuments', arrayInDocuments);
 router.get('/arrayOperators', arrayOperators);
 router.get('/existsOperator', existsOperator);
-router.get('/typeOperator', typeOperator)
+router.get('/typeOperator', typeOperator);
+router.get('/findFilter', findFilter);
 
 export default router;
