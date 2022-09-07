@@ -51,7 +51,7 @@ export const notEqualTo = async (req, res, next) => {
 export const greaterThan = async (req, res, next) => {
     
     try {
-        // const persons = await Person.find({ age: { $gt: 25 } });
+        const persons = await Person.find({ age: { $gt: 25 } });
 
         // greater than / equal to
         // const persons = await Person.find({ age: { $gte: 25 } });
@@ -62,6 +62,19 @@ export const greaterThan = async (req, res, next) => {
         
         // greater than operator for dates
         // const persons = await Person.find({ registered: { $gt: "2016-08-20T04:43:18.000Z" } }).count();
+
+        res.status(200).json(persons);
+    } catch (error) {
+        next(error)
+    }
+};
+
+// $in and $nin operators
+// both require an array as a value
+export const inAndNotIn = async (req, res, next) => {
+    
+    try {
+        const persons = await Person.find({ age: { $in: [21, 22] } });
 
         res.status(200).json(persons);
     } catch (error) {
