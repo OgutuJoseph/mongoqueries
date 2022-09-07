@@ -198,3 +198,31 @@ export const arrayOperators = async (req, res, next) => {
         next(error)
     }
 };
+
+// $exists operator 
+export const existsOperator = async (req, res, next) => {
+    
+    try {    
+        const persons = await Person.find({ name: { $exists: true } });
+
+        res.status(200).json(persons);
+    } catch (error) {
+        next(error)
+    }
+};
+
+// $type operator 
+/** used when for instance you want to change field type of elements. by def, mongo stores number values as double and you can be able to fetch and convert them to int */
+export const typeOperator = async (req, res, next) => {
+    
+    try {    
+        // const persons = await Person.find({ index: { $type: "int" } });
+
+        
+        const persons = await Person.find({ index: { $type: "int", $eq: 10 } });
+
+        res.status(200).json(persons);
+    } catch (error) {
+        next(error)
+    }
+};

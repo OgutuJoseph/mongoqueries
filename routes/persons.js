@@ -10,7 +10,9 @@ import {
     orOperator, 
     nestedDocuments, 
     arrayInDocuments, 
-    arrayOperators 
+    arrayOperators, 
+    existsOperator,
+    typeOperator
 } from '../controller/person.js';
 
 const router = express.Router();
@@ -28,5 +30,7 @@ router.get('/orOperator', orOperator);
 router.get('/nestedDocuments', nestedDocuments);
 router.get('/arrayInDocuments', arrayInDocuments);
 router.get('/arrayOperators', arrayOperators);
+router.get('/existsOperator', existsOperator);
+router.get('/typeOperator', typeOperator)
 
 export default router;
